@@ -114,6 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             db.close();
         }
     }
+
     //I use this function to determine how many records are in a given table passed to the function
     public int countRecordsFromTable(String tableName)
     {
@@ -130,6 +131,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         return numRows;
     }
+
+
 
     public String getFNameForUser(int userId)
     {
@@ -171,6 +174,21 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
         return userFName;
+    }
+
+    //I will use this to determine how many post that a single person has made
+    public int getNumOfPostForUserGivenID(int userID){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String checkNumOfPost = "SELECT count (*) FROM " + posts_table_name + " WHERE userId = '" + userID + "';";
+
+        Cursor cursor = db.rawQuery(checkNumOfPost, null);
+
+        cursor.moveToFirst();
+
+        int numOfPost = cursor.getInt(0);
+
+        return numOfPost;
     }
 
     public boolean userIdExists(int userId)

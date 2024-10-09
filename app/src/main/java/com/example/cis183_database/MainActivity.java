@@ -1,5 +1,6 @@
 package com.example.cis183_database;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity
     EditText et_j_main_userId;
     Button btn_j_main_login;
     TextView tv_j_userFname;
+    Intent intent_j_welcomeScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity
         et_j_main_userId = findViewById(R.id.et_v_main_userId);
         btn_j_main_login = findViewById(R.id.btn_v_main_login);
         tv_j_userFname   = findViewById(R.id.tv_v_main_userFname);
+
+        //set intent for welcome screen
+        intent_j_welcomeScreen = new Intent(MainActivity.this, WelcomeScreen.class);
 
         //make a new instance of the dbHelper.
         dbHelper = new DatabaseHelper(this);
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+
                 //get the id that was entered by the user
                 int enteredId = Integer.parseInt(et_j_main_userId.getText().toString());
                 //set the session data so we know who is logged int
@@ -65,6 +71,7 @@ public class MainActivity extends AppCompatActivity
                 //get the first name associated with this userid if it exists
                 if(SessionData.getLoggedInUser() != null)
                 {
+                    startActivity(intent_j_welcomeScreen);
                     tv_j_userFname.setText(SessionData.getLoggedInUser().getFname());
                 }
                 else {

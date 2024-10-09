@@ -225,6 +225,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return false;
         }
     }
+    public Post getRecentPostGivenID(int id){
+
+        Post post = new Post();
+
+        int numOfPost = 0;
+
+        String selectQuery = "SELECT postdata, category From " + posts_table_name + " Where userId = '" + id + "' order by postId desc;";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor != null){
+            cursor.moveToFirst();
+            post.setPost(cursor.getString(0));
+            post.setCategory(cursor.getString(1));
+        }else{
+
+        }
+
+        db.close();
+        return post;
+    }
 
     public void getAllUserDataGivenId(int userId)
     {

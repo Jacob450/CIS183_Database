@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
                 int enteredId = Integer.parseInt(et_j_main_userId.getText().toString());
                 //set the session data so we know who is logged int
                 //this is important so we only show posts written by a specific person
-                //SessionData.setLoggedInUser(enteredId);
+
                 dbHelper.getAllUserDataGivenId(enteredId);
                 //get the first name associated with this userid if it exists
                 if(SessionData.getLoggedInUser() != null)

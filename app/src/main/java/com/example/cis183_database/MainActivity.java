@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
     Button btn_j_main_login;
     TextView tv_j_userFname;
     Intent intent_j_welcomeScreen;
+    Button btn_j_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         et_j_main_userId = findViewById(R.id.et_v_main_userId);
         btn_j_main_login = findViewById(R.id.btn_v_main_login);
         tv_j_userFname   = findViewById(R.id.tv_v_main_userFname);
+        btn_j_register = findViewById(R.id.btn_v_main_register);
 
         //set intent for welcome screen
         intent_j_welcomeScreen = new Intent(MainActivity.this, WelcomeScreen.class);
@@ -47,7 +49,18 @@ public class MainActivity extends AppCompatActivity
         checkAllTableCounts();
 
         loginButtonClickListener();
+        registerclick();
     }
+
+    private void registerclick(){
+        btn_j_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Register.class));
+
+            }
+        });
+}
     //This is just used for testing.  I want to make sure that I can add data to my database.
     private void checkAllTableCounts()
     {

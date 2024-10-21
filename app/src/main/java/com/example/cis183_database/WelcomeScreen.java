@@ -19,6 +19,7 @@ public class WelcomeScreen extends AppCompatActivity {
     Button btn_j_goBack;
     DatabaseHelper dbHelper;
     Intent intent_j_mainactivity;
+    Button btn_j_makepost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class WelcomeScreen extends AppCompatActivity {
         tv_j_numOfPost = findViewById(R.id.tv_v_ws_numofpost);
         btn_j_goBack = findViewById(R.id.btn_v_ws_goback);
         tv_j_recentPost = findViewById(R.id.tv_v_ws_recentpost);
+        btn_j_makepost = findViewById(R.id.btn_v_welcome_makepost);
         intent_j_mainactivity = new Intent(this, MainActivity.class);
         //Create new instance of database helper
         dbHelper = new DatabaseHelper(this);
@@ -39,10 +41,20 @@ public class WelcomeScreen extends AppCompatActivity {
         setWelcomeMessage();
         tv_j_numOfPost.setText(String.valueOf(dbHelper.getNumOfPostForUserGivenID(SessionData.getLoggedInUser().getId())));
         setRecentPost();
+        makePost();
 
 
 
         goBack();
+    }
+
+    private void makePost(){
+        btn_j_makepost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(WelcomeScreen.this, MakePost.class));
+            }
+        });
     }
 
     private void setWelcomeMessage(){
@@ -51,7 +63,13 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
     private void setRecentPost(){
-        tv_j_recentPost.setText(dbHelper.getRecentPostGivenID(SessionData.getLoggedInUser().getId()).getPost());
+        Post p = dbHelper.getRecentPostGivenID(SessionData.getLoggedInUser().getId());
+        if(p != null){
+            tv_j_recentPost.setText(p.getPost());
+        }else{
+            tv_j_recentPost.setText("You do not have nay post you should make one");
+        }
+
     }
 
     private void goBack(){

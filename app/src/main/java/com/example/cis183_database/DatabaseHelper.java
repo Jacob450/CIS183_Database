@@ -227,7 +227,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
     public Post getRecentPostGivenID(int id){
 
-        Post post = new Post();
+        Post post = null;
 
         int numOfPost = 0;
 
@@ -235,7 +235,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if(cursor != null){
+        if(cursor.moveToFirst()){
+            post = new Post();
             cursor.moveToFirst();
             post.setPost(cursor.getString(0));
             post.setCategory(cursor.getString(1));
@@ -282,4 +283,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
 
     }
+
+
+    public void addUserToDB(User u){
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //INSERT INTO users (fname, lname, email) VALUES ('Bobby', 'Smith', 'Bsmith@bsmith.org');
+
+        db.execSQL("INSERT INTO " + users_table_name +"(fname, lname, email) VALUES ('"+u.getFname()+"', '"+u.getLname()+"', '"+u.getEmail()+"');");
+
+
+        db.close();
+    }
+    //end
 }

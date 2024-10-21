@@ -22,10 +22,11 @@
         android:id="@+id/tv_j_ws_userlname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
         android:layout_marginEnd="131dp"
+        android:layout_marginBottom="74dp"
         android:text="TextView"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_v_ws_userfname"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -34,12 +35,11 @@
         android:id="@+id/tv_v_ws_numofpost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
         android:layout_marginEnd="3dp"
         android:text="Postnum"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_j_ws_userlname"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_ws_userfname" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="@+id/tv_j_ws_userlname" />
 
     <TextView
         android:id="@+id/textView6"
@@ -47,8 +47,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="3dp"
+        android:layout_marginBottom="26dp"
         android:text="Welcome"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_j_ws_userlname"
         app:layout_constraintEnd_toEndOf="@+id/tv_j_ws_userlname"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,10 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
+        android:layout_marginBottom="20dp"
         android:text="Number Of Post: "
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_v_ws_numofpost"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_welcome_makepost"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_j_ws_userlname" />
 
     <Button
         android:id="@+id/btn_v_ws_goback"
@@ -70,17 +74,32 @@
         android:text="Go Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_ws_recentpost" />
 
     <TextView
         android:id="@+id/tv_v_ws_recentpost"
-        android:layout_width="348dp"
-        android:layout_height="61dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="173dp"
         android:singleLine="false"
         android:text="Hello World"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_ws_goback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_ws_numofpost" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_welcome_makepost" />
+
+    <Button
+        android:id="@+id/btn_v_welcome_makepost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="105dp"
+        android:text="MakePost"
+        app:layout_constraintBottom_toTopOf="@+id/tv_v_ws_recentpost"
+        app:layout_constraintEnd_toEndOf="@+id/tv_v_ws_numofpost"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
